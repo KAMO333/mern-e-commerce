@@ -12,6 +12,8 @@ import Navbar from "./components/Navbar";
 import { useUserStore } from "./stores/useUserStore";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { useCartStore } from "./stores/useCartStore";
+import PurchaseSuccessPage from "./pages/PurchaseSuccessPage";
+import PurchaseCancelPage from "./pages/PurchaseCancelPage";
 
 const App = () => {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -60,6 +62,14 @@ const App = () => {
           <Route
             path="/cart"
             element={user ? <CartPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/purchase-success"
+            element={user ? <PurchaseSuccessPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/purchase-cancel"
+            element={user ? <PurchaseCancelPage /> : <Navigate to="/login" />}
           />
         </Routes>
       </div>
