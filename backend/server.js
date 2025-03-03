@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import path from "path";
+import job from "./cron.js";
 
 import authRoutes from "./routes/auth.route.js";
 import { connectDB } from "./lib/db.js";
@@ -12,6 +13,7 @@ import paymentRoutes from "./routes/payment.route.js";
 import analyticsRoutes from "./routes/analytics.route.js";
 
 dotenv.config();
+job.start();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
