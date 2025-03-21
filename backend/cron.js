@@ -3,7 +3,7 @@ import https from "https";
 
 const URL = "https://mern-e-commerce-e8hp.onrender.com/";
 
-const job = new cron.CronJob("*/14 * * * *", function () {
+const job = new cron.CronJob("0 0 * * 0", function () {
   https
     .get(URL, (res) => {
       if (res.statusCode === 200) {
