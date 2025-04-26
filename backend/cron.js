@@ -3,7 +3,8 @@ import https from "https";
 
 const URL = "https://mern-e-commerce-e8hp.onrender.com/";
 
-const job = new cron.CronJob("0 0 * * 0", function () {
+// Changed to run on the 1st and 15th of each month at midnight
+const job = new cron.CronJob("0 0 1,15 * *", function () {
   https
     .get(URL, (res) => {
       if (res.statusCode === 200) {
@@ -21,7 +22,7 @@ export default job;
 
 // CRON JOB EXPLANATION:
 // Cron jobs are scheduled tasks that run periodically at fixed intervals or specific times
-// send 1 GET request for every 14 minutes
+// send 1 GET request twice a month (on the 1st and 15th)
 
 // Schedule:
 // You define a schedule using a cron expression, which consists of five fields representing:
@@ -34,3 +35,4 @@ export default job;
 //* 30 3 15 * * - At 3:30 AM, on the 15th of every month
 //* 0 0 1 1 * - At midnight, on January 1st
 //* 0 * * * * - Every hour
+//* 0 0 1,15 * * - At midnight on the 1st and 15th of each month
