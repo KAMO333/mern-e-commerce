@@ -11,7 +11,6 @@ dotenv.config();
 // await redis.set("cash", "money");
 
 export const client = new Redis(
-  process.env.UPSTASH_REDIS_URL ||
-    "rediss://default:AYGeAAIjcDFhNWY1NmUxMzRkMTM0N2NiOTMxNTgwZmRiNGQ3MDNjOHAxMA@knowing-wallaby-33182.upstash.io:6379"
+  "rediss://default:AYGeAAIjcDFhNWY1NmUxMzRkMTM0N2NiOTMxNTgwZmRiNGQ3MDNjOHAxMA@knowing-wallaby-33182.upstash.io:6379"
 );
 await client.set("foo", "bar");
