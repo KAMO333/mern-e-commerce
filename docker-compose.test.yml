@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  test-db:
+    image: mongo:4.4.18
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  test-redis:
+    image: redis:6-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  test-runner:
+    build: .
+    environment:
+      - NODE_ENV=test
+      - MONGO_URI=mongodb://test-db:27017/test-db
+      - UPSTASH_REDIS_URL=redis://test-redis:6379
+      - ACCESS_TOKEN_SECRET=test_secret_123
+      - REFRESH_TOKEN_SECRET=test_secret_456
+      - STRIPE_SECRET_KEY=sk_test_mock_key_123
+      - CLOUDINARY_CLOUD_NAME=mock
+      - CLOUDINARY_API_KEY=mock
+      - CLOUDINARY_API_SECRET=mock
+    depends_on:
+      test-db:
+        condition: service_healthy
+      test-redis:
+        condition: service_healthy
+    command: npm test

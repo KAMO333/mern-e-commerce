@@ -5,6 +5,7 @@
   "main": "backend/server.js",
   "scripts": {
     "dev": "nodemon backend/server.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node backend/server.js",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
@@ -33,6 +34,9 @@
     "stripe": "^17.5.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^11.0.1",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.2.2"
   }
 }
