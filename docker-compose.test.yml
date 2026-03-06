@@ -34,4 +34,4 @@ services:
         condition: service_healthy
       test-redis:
         condition: service_healthy
-    command: npm test -- --coverage --forceExit --detectOpenHandles
+    command: npm test -- --runInBand --coverage --forceExit --detectOpenHandles
